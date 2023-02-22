@@ -1,38 +1,96 @@
-.App {
-  text-align: center;
+:root {
+  --website-red: rgb(127, 29, 29);
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
   to {
     transform: rotate(360deg);
   }
+}
+
+.banner {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  background-color: var(--website-red);
+  color: white;
+  padding: 1em;
+}
+
+.core-container {
+  margin: 1rem;
+}
+
+.committee-page {
+  margin: auto;
+  width: 100%;
+}
+
+@media (min-width: 1024px) {
+  .committee-page {
+    margin: auto;
+    width: 80%;
+  }
+}
+
+@media (min-width: 1280px) {
+  .committee-page {
+    margin: auto;
+    width: 60%;
+  }
+}
+
+.centred-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centred-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.committee-container {
+  width: 100%;
+}
+
+.committee-members {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.role-container {
+  width: 12rem;
+  border: 0.2rem var(--website-red) solid;
+  margin-bottom: 0.4rem;
+}
+
+.role-name {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 0.2rem;
+  margin-left: 0.2rem;
+}
+
+.profile-picture {
+  width: 100%;
+}
+
+.loading-holder {
+  border-collapse: collapse;
+  animation: spin 1s linear infinite;
+  border-radius: 9999px;
+  border-width: 0.3rem;
+  border-color: white;
+  border-bottom-color: var(--website-red);
+  border-style: solid;
+  height: 2rem;
+  width: 2rem;
+  margin-bottom: 0.3rem;
 }

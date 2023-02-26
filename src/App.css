@@ -2,6 +2,14 @@
   --website-red: rgb(127, 29, 29);
 }
 
+a {
+  display: block;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  color: inherit;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
@@ -14,10 +22,12 @@
 .banner {
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: space-between;
   background-color: var(--website-red);
   color: white;
   padding: 1em;
+  font-weight: 600;
+  align-items: center;
 }
 
 .core-container {
@@ -27,6 +37,18 @@
 .committee-page {
   margin: auto;
   width: 100%;
+}
+
+.select-committee {
+  padding: 0.2rem;
+  margin-left: 0.2rem;
+}
+
+.aligned-input {
+  display: flex;
+  flex-direction: row;
+  justify-items: center;
+  align-items: center;
 }
 
 @media (min-width: 1024px) {
@@ -55,6 +77,12 @@
   justify-content: center;
 }
 
+.left-justified-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+}
+
 .committee-container {
   width: 100%;
 }
@@ -70,12 +98,17 @@
   margin-bottom: 0.4rem;
 }
 
-.role-name {
+.role-details {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin-top: 0.2rem;
+  margin-top: 0.1rem;
   margin-left: 0.2rem;
+  margin-bottom: 0.1rem;
+}
+
+.role-name {
+  font-weight: 600;
 }
 
 .profile-picture {

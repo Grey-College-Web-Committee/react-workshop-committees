@@ -26,7 +26,7 @@ export const RoleComponent = (props) => {
 
   const displayName = () => {
     /*
-    * This function currently display 'TODO' in place of the name.
+    * This function currently display 'Todo' in place of the name.
     * Can you display the name of the actual person(s) who hold the role?
     * You'll again need to consider:
     * 1. What if the role is currently vacant?

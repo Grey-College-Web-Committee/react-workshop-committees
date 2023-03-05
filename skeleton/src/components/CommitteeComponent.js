@@ -16,33 +16,40 @@ export const CommitteeComponent = (props) => {
   */
   useEffect(() => {
     const loadCommittee = async () => {
+      /*
+      * You will need to use axios to fetch the data from the server.
+      * The data can be retrieved via a GET request from https://www.greyjcr.co.uk/api/jcr/committee/{committeeId}
+      * For example, try opening https://www.greyjcr.co.uk/api/jcr/committee/1 in your browser
+      */
       let result;
 
       // Use axios again to perform a GET request, the address is dynamic allowing us to select
-      // different committees easily
+      // different committees easily. You can see an example of an 
       try {
-        result = await axios.get(`https://www.greyjcr.co.uk/api/jcr/committee/${props.committeeId}`);
+        // [TODO]: result = ?
       } catch (error) {
         alert("Unable to load the basic committee data");
         console.log({ error });
         return;
       }
 
-      // Destructure the results, if you look at the network traffic in Developer Tools you'll be able
-      // to see that the JSON returned has two top-level keys. .data accesses the content of the response
-      // rather than the additional data such as headers etc sent with the response
-      const { committee, committeeMembers: roles } = result.data;
+      // Once you have fetched the data, you'll need to destructure the results.
+      // If you look at the network traffic in Developer Tools you'll be able to see
+      // that the JSON returned has two top-level keys. .data accesses the content of 
+      // the response rather than the additional data such as headers etc sent with the response
 
+      // [TODO]: Destructure the results
+      
       // This line does two things:
       // 1. Sort the roles by their position on the committee (e.g. we want Pres -> FACSO -> VP -> ...)
       // as the order for the Executive Committee, this is done using the position attribute
       // 2. We then discard the metadata about the role (such as the position in the committee) and map
       // directly to the attribute that we are interested in
-      const destructuredRoles = roles.sort((a, b) => a.position - b.position).map(entry => entry.JCRRole);
 
-      // Update the state, automatically triggering a re-render
-      setCommitteeMembers(destructuredRoles);
-      setCommitteeMetaData(committee);
+      // [TODO]: Uncomment the line below once you have the data
+      // const destructuredRoles = roles.sort((a, b) => a.position - b.position).map(entry => entry.JCRRole);
+
+      // [TODO]: Finally, can you update the state and trigger a re-render
     }
 
     // We can't use the async keyword with useEffect because we can't block the rendering process.
@@ -51,14 +58,14 @@ export const CommitteeComponent = (props) => {
     loadCommittee();
   }, [props.committeeId])
 
-  // Display the name and description of the committee
+  /*
+  * Can you display the name and description of the committee?
+  */
   const displayCommitteeMetaData = () => {
-    const { name, description } = committeeMetaData;
-
     return (
       <>
-        <h2>{name}</h2>
-        <p>{description}</p>
+        <h2>[Committee Name]</h2>
+        <p>[Committee Description]</p>
       </>
     )
   }
@@ -75,32 +82,19 @@ export const CommitteeComponent = (props) => {
     <div className="committee-members">
       {
         committeeMembers.map((role, i) => {
-          // No users => role is currently vacant
+          // [TODO] No users => role is currently vacant, can you use the RoleComponent to display
+          // a vacant role?
           if(role.JCRRoleUserLinks.length === 0) {
             return (
-              <RoleComponent
-                key={`${role.name}`}
-                name={role.name}
-                description={role.description}
-                email={role.email}
-                vacant={true}
-              />
+              <></>
             )
           } else {
+            // [TODO] Can you use the RoleComponent to display the person who is in the role?
             // We have to map again as there can be multiple people in a role
             // e.g. 2 Senior Welfare Officers
             return (
               role.JCRRoleUserLinks.map((member, j) => (
-                <RoleComponent
-                  key={`${role.name}-${j}`}
-                  name={role.name}
-                  description={role.description}
-                  email={role.email}
-                  vacant={false}
-                  holderFirstNames={member.User.firstNames}
-                  holderSurname={member.User.surname}
-                  holderProfilePicture={member.User.profilePicture}
-                />
+                <></>
               ))
             )
           }

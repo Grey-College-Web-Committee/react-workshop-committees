@@ -16,6 +16,7 @@ export const CommitteePage = () => {
     const loadInitialData = async () => {
       let result;
 
+      // We first retrieve the data from the server, try clicking the link to see the raw data 
       // axios is a common npm package that lets us fetch data from a source
       // In this case, we perform a GET request to the main website
       try {
@@ -28,8 +29,9 @@ export const CommitteePage = () => {
         return;
       }
   
-      // Update the state, React will automatically re-render for us
-      setAllCommitteesData(result.data.committees);
+      // [TODO] Can you set the committee data? You'll need to look at the object that is stored
+      // in result. Try printing it to console using console.log with your Developer Tools open!
+      // setAllCommitteesData(?)
     }
 
     loadInitialData();
@@ -60,12 +62,14 @@ export const CommitteePage = () => {
           onChange={updateSelectedCommittee}
         >
           {
-            allCommitteesData.map((committee, i) => (
-              <option 
-                key={i}
-                value={committee.id}
-              >{committee.name}</option>
-            ))
+            allCommitteesData.map((committee, i) => {
+              // [TODO]: Can you display all of the returned committees?
+              // Perhaps try logging the 'committee' object within this loop to see the attributes?
+              // You'll need to use the <option> tag in the return below.
+              return (
+                <></>
+              )
+            })
           }
         </select>
       </div>

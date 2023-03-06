@@ -14,22 +14,11 @@ export const CommitteePage = () => {
   */
   useEffect(() => {
     const loadInitialData = async () => {
-      let result;
-
+      // We first retrieve the data from the server, try clicking the link to see the raw data 
       // axios is a common npm package that lets us fetch data from a source
       // In this case, we perform a GET request to the main website
-      try {
-        result = await axios.get("https://www.greyjcr.co.uk/api/jcr/committees/basic");
-      } catch (error) {
-        // Should the request fail you will be notified by an alert box and the actual error
-        // will be logged to the developer console
-        alert("Unable to load the basic committee data");
-        console.log({ error });
-        return;
-      }
-  
-      // Update the state, React will automatically re-render for us
-      setAllCommitteesData(result.data.committees);
+      // API: https://www.greyjcr.co.uk/api/jcr/committees/basic
+      // You'll need to use axios and set the allCommitteesData state
     }
 
     loadInitialData();
@@ -37,7 +26,8 @@ export const CommitteePage = () => {
 
   // This is called when the selected item in the select input is changed
   const updateSelectedCommittee = (event) => {
-    setSelectedCommittee(event.target.value);
+    // Need to update the selectedCommittee state here
+    // Find out some more about what is returned in the event argument
   }
 
   // If we don't have any data then display a loading spinner while we wait for it be fetched
@@ -60,12 +50,8 @@ export const CommitteePage = () => {
           onChange={updateSelectedCommittee}
         >
           {
-            allCommitteesData.map((committee, i) => (
-              <option 
-                key={i}
-                value={committee.id}
-              >{committee.name}</option>
-            ))
+            // [TODO]: Can you display all of the returned committees?
+            // You'll need to loop all of the committees and display an <option>
           }
         </select>
       </div>
